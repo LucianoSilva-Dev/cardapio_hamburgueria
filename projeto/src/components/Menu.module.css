@@ -1,0 +1,20 @@
+.menu{
+    height: 60vh;
+    background-color: #F6F7F8;
+}
+
+.title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 12vh;
+}
+.menu_box{
+    display: flex;
+    flex-direction: column;
+    gap: 6%;
+    margin-left: 2%;
+    margin-right: 2%;
+    height: 52vh;
+    text-align: left;
+}

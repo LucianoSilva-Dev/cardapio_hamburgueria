@@ -1,0 +1,45 @@
+.menu_item{
+    display: flex;
+    gap: 5px;
+    width: 100%;
+    height: 42%;
+}
+
+.img{
+    height: 100%;
+}
+
+.infos{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.name{
+    font-size: medium;
+    font-weight: bold;
+}
+
+.dsc{
+    font-size: smaller;
+    word-spacing: 3px;
+}
+
+.bottom{
+    display: flex;
+    justify-content: space-between;
+}
+
+.price{
+    font-size: medium;
+    font-weight: bold;
+}
+.add_to_cart{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    background-color: black;
+    border: none;
+    border-radius: 5px;
+}
