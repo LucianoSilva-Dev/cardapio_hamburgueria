@@ -1,6 +1,7 @@
 .menu{
-    height: 60vh;
+    height: fit-content;
     background-color: #F6F7F8;
+    margin-bottom: calc(8vh + 15px);
 }
 
 .title{
@@ -12,9 +13,9 @@
 .menu_box{
     display: flex;
     flex-direction: column;
-    gap: 6%;
+    gap: 15px;
     margin-left: 2%;
     margin-right: 2%;
-    height: 52vh;
+    height: 100%;
     text-align: left;
 }
