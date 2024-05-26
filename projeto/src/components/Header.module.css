@@ -1,0 +1,39 @@
+.header{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    background-image: url("../../public/assets/bg.png");
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 40vh;
+}
+
+.div{
+    color: white;
+    background-color: #54CC0A;
+    width: max-content;
+    padding: 4px 10px;
+    font-size: small;
+    font-weight: 600;
+    text-align: center;
+}
+
+.logo {
+    height: 40%;
+    border-radius: 50%;
+}
+
+.title{
+    color: white;
+    font-size: x-large;
+    margin: 0;
+    padding: 0;
+}
+
+.end{
+    color: white;
+    font-size: small;
+    margin-bottom: 8px;
+}
