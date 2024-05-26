@@ -14,11 +14,27 @@
     height: 12vh;
 }
 .menu_box{
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 15px;
     margin-left: 2%;
     margin-right: 2%;
     height: 100%;
+    width: auto;
     text-align: left;
+}
+
+@media screen and (min-width: 768px) {
+    .menu_box{
+        grid-template-columns: 1fr 1fr;
+        column-gap: 30px;
+    }
+
+    .menu{
+        margin-bottom: 0;
+    }
+
+    .title{
+        font-size: large;
+    }
 }
