@@ -1,0 +1,25 @@
+.box{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+    height: fit-content;
+    text-align: left;
+}
+
+.middle{
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn_remover{
+    padding: 5px;
+    background-color: transparent;
+    border: none;
+    border-radius: 3px;
+    text-align: center;
+}
+
+.btn_remover:hover{
+    cursor: pointer;
+}
