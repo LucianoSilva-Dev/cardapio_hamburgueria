@@ -12,8 +12,16 @@
 }
 
 .text{
+    display: flex;
+    align-items: center;
     color: white;
     font-size: smaller;
     font-weight: 600;
-    font-family: 'Roboto', sans-serif
+    font-family: 'Roboto', sans-serif;
+    background-color: #FF3131;
+    border: none;
+}
+
+.text:hover{
+    cursor: pointer;
 }
