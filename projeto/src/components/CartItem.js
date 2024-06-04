@@ -1,10 +1,19 @@
 import Styles from './CartItem.module.css'
 
 function CartItem({nome, qtd, preco_unitario, SetCartItens, CartItens}){
-    let total = (preco_unitario * qtd).toString().replace(".",",")
-
     function excluir(){
-        SetCartItens(CartItens.filter(item => item.nome != nome))
+        //ao clicar em 'remover' retira uma quantidade do carrinho
+        if(qtd > 1){
+            const itemIndex = CartItens.findIndex(item => item.nome === nome)
+            //cópia profunda do array
+            const novoCartItens = JSON.parse(JSON.stringify(CartItens))
+            novoCartItens[itemIndex].qtd -= 1
+            SetCartItens(novoCartItens)
+            return
+        }
+
+        SetCartItens(CartItens.filter(item => item.nome !== nome))
+        
     }
 
     return(
@@ -16,7 +25,7 @@ function CartItem({nome, qtd, preco_unitario, SetCartItens, CartItens}){
                 <button onClick={excluir} className={Styles.btn_remover}>Remover</button>
             </div>
 
-            <p>R$ {total}</p>
+            <p>R$ {preco_unitario.toFixed(2).toString().replace(".", ",")}</p>
         </div>
     )
 }
