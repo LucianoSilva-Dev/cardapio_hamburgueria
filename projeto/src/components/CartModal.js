@@ -3,6 +3,57 @@ import Styles from './CartModal.module.css';
 import CartItem from './CartItem';
 
 function CartModal({fecharHandler, Itens, CartItens, SetCartItens}){
+    let [inptBorderColor, SetInptBorderColor] = React.useState('black');
+    let [inptError, SetInptError] = React.useState(false);
+    let [end, SetEnd] = React.useState("")
+
+    function montarPedidoWhats(){
+        let pedido = CartItens.reduce((accumulator, item) => {
+            const total_por_item = (item.qtd * item.preco_unitario).toFixed(2).toString().replace(".", ",");
+
+            return accumulator + `Nome: ${item.nome}, Qtd: ${item.qtd}, Total: R$ ${total_por_item}\n`;
+        }, "Pedido Novo!\n")
+        
+        //total de todos os itens
+        pedido += `\nPreço total do pedido: R$ ${precoTotal().toString().replace(".", ",")}`
+
+        //atribui o endereço
+        pedido += `\nEndereço: ${end}`
+
+        //envia para o zapzap
+        fetch(`wa.me/send?phone=11969438021&text=${pedido}`)
+        .then(result => {return result})
+        .then(data => console.log(data))
+        .catch(error => console.log(error))
+    }
+
+    function finalizar_pedido(e) {
+        e.preventDefault();
+
+        const hour = new Date().getHours()
+
+        if(CartItens.length > 0){
+            if(end.length > 0){
+                SetInptBorderColor("black");
+                SetInptError(false)
+                
+                if(hour >= 18 && hour < 22){
+                    montarPedidoWhats()
+                }
+                else{
+                    alert("restaurante fechado!");
+                }
+            }
+            else {
+                SetInptBorderColor("red");
+                SetInptError(true)
+            }
+        }
+        else{
+            alert("Carrinho vazio!!!")
+        }
+    }
+
     function precoTotal() {
         if(CartItens.length > 0)
         {
@@ -23,7 +74,7 @@ function CartModal({fecharHandler, Itens, CartItens, SetCartItens}){
             //as iterações começaram a partidor do indice 1, o que pode gerar bugs
 
             let preco = qtds.reduce((acumulador, qtd, index) => acumulador + (qtd * precos[index]), 0) //0 = valor inicial
-            return preco
+            return preco.toFixed(2)
         }
 
         return 0
@@ -46,15 +97,23 @@ function CartModal({fecharHandler, Itens, CartItens, SetCartItens}){
                 }
             </div>
             
-            <h3 className={Styles.total}>Total: {precoTotal()}</h3>
+            <h3 className={Styles.total}>Total: {precoTotal().toString().replace(".",",")}</h3>
 
-            <form action="" className={Styles.bottom}>
+            <form className={Styles.bottom}>
                 <h3>Endereço de entrega</h3>
-                <input className={Styles.inpt_end} type="text" placeholder="Digite seu endereço completo..." />
+
+                <div>
+                    <input onChange={(e) => SetEnd(e.target.value)} style={{borderColor: inptBorderColor}} className={Styles.inpt_end} type="text" placeholder="Digite seu endereço completo..." />
+                    {   //é mostrado apenas se houver um erro no input edereço
+                        inptError && 
+                        <div className={Styles.inpt_error}>Preencha o endereço completo</div>
+                    }
+                </div>
+                
 
                 <div className={Styles.actions}>
                     <button onClick={() => fecharHandler(false)} className={Styles.btn_fechar}>Fechar</button>
-                    <button onClick={() => fecharHandler(false)} className={Styles.btn_finalizar}>Finalizar pedido</button>
+                    <button  onClick={finalizar_pedido} className={Styles.btn_finalizar}>Finalizar pedido</button>
                 </div>
             </form>
         </dialog>
