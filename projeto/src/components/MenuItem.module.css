@@ -1,11 +1,16 @@
 .menu_item{
     display: flex;
-    gap: 5px;
+    gap: 10px;
     width: 100%;
 }
 
 .img{
     height: 120px;
+    border-radius: 10px;
+}
+
+.img:hover{
+    transform:rotateZ(10deg)
 }
 
 .infos{
@@ -42,6 +47,11 @@
     background-color: black;
     border: none;
     border-radius: 5px;
+    transition: .3s
+}
+
+.add_to_cart:hover{
+    opacity: .8;
 }
 
 @media screen and (min-width: 768px) {

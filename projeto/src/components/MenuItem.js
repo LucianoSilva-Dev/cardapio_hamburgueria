@@ -3,22 +3,22 @@ import {FaCartPlus} from 'react-icons/fa';
 
 function MenuItem({nome, img_path, dsc, preco_unitario, cartItens, SetCartItens}) {
     function isRepeated(){
-       let index_repetido = -1
+        let itemIndex = -1;
 
-        cartItens.map((item, index) => {
-            if(item.nome == nome){
-                index_repetido = index
+        cartItens.forEach((item, index) => {
+            if(item.nome === nome){
+                itemIndex = index
             }
-        })
+        });
 
-        return index_repetido
+        return itemIndex
 
     }
     
     function addToCart(){
         //verifica se já tem o mesmo item no carrinho
         const repetido = isRepeated();
-        if(repetido == -1){
+        if(repetido === -1){
             SetCartItens(cartItens.concat([{nome: nome, preco_unitario: preco_unitario, qtd: 1}]))
         }
 
@@ -42,7 +42,7 @@ function MenuItem({nome, img_path, dsc, preco_unitario, cartItens, SetCartItens}
                 
 
                 <div className={Styles.bottom}>
-                    <p className={Styles.price}>R$ {preco_unitario.toString().replace(".", ",")}</p>
+                    <p className={Styles.price}>R$ {preco_unitario.toFixed(2).toString().replace(".",",")}</p>
                     <button onClick={addToCart} className={Styles.add_to_cart}><FaCartPlus size={20} color='white'/></button>
                 </div>
                 
