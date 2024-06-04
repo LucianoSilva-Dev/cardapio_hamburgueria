@@ -5,6 +5,7 @@
     transform: translate(-50%, -50%);
     width: 95vw;
     max-width: 500px;
+    max-height: 570px;
     padding: 15px 20px;
     display: flex;
     align-items: center;
@@ -31,8 +32,21 @@
     margin-top: 10px;
 }
 
+.input_div{
+    width: 100%;
+    height: max-content;
+}
+
 .inpt_end{
     padding: 5px;
+    border-width: 1px;
+    width: 100%;
+}
+
+/*caso o cliente não preencha o endereço*/
+.inpt_error{
+    color: #ff3131;
+    font-size: smaller;
 }
 
 .btn_fechar{
@@ -66,9 +80,16 @@
     flex-direction: column;
     gap: 20px;
     width: 100%;
+    overflow-y: scroll;
 }
 
 .total{
     width: 100%;
     text-align: left;
+}
+
+@media screen and (max-width: 768px) {
+    .dialog{
+        max-height: 465px;
+    }
 }
